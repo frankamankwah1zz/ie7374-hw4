@@ -2,12 +2,23 @@
 
 Use these as **architecture references**, not as code to copy wholesale. Closest matches first.
 
+## Complete projects vendored in this repo
+
+Full source trees (runnable references) are under **`reference/`**:
+
+| Local path | Upstream | Use as |
+|------------|----------|--------|
+| [`reference/rag_application/`](../reference/rag_application/) | [hhphan/rag_application](https://github.com/hhphan/rag_application) | **Primary complete project** — Docker, pgvector, Claude, Streamlit citations, tests |
+| [`reference/NeuralStack-RAG/`](../reference/NeuralStack-RAG/) | [harshita-mp/NeuralStack-RAG](https://github.com/harshita-mp/NeuralStack-RAG) | Scheduled ingest + hybrid RAG + citations |
+
+Start with [`reference/README.md`](../reference/README.md) (task ↔ file map + how to run).
+
 ---
 
 ## Best overall match: scheduled ingest + cited Q&A
 
 ### 1. NeuralStack-RAG (strongest structural twin)
-**Repo:** https://github.com/harshita-mp/NeuralStack-RAG  
+**Repo:** https://github.com/harshita-mp/NeuralStack-RAG · **Local:** `reference/NeuralStack-RAG/`  
 
 **What it is:** End-to-end RAG over arXiv papers — automated ingest, hybrid retrieval, Streamlit + FastAPI, answers with `[arxiv_id, section]` citations, **daily scheduled ingest** via n8n.
 
