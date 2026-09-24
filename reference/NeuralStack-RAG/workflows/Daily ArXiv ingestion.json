@@ -1,0 +1,69 @@
+{
+  "name": "Daily ArXiv ingestion",
+  "nodes": [
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "triggerAtHour": 9
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.3,
+      "position": [
+        0,
+        0
+      ],
+      "id": "f73803fd-3257-40a5-9622-23ee5ba8dad1",
+      "name": "Schedule Trigger"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "http://127.0.0.1:8000/ingest",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"query\": \"cat:cs.CL AND abs:\\\"retrieval augmented generation\\\"\",\n  \"max_results\": 5\n}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.4,
+      "position": [
+        208,
+        0
+      ],
+      "id": "a68d99b6-303f-4510-8e85-05ffa9463469",
+      "name": "HTTP Request"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Schedule Trigger": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": true,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate",
+    "availableInMCP": false
+  },
+  "versionId": "327c61ef-2c4a-41af-af06-e891025beaf6",
+  "meta": {
+    "instanceId": "72d4c88fe0d10fb61a4d2a9218add9208985a83ef0315491012adf9dabb0fdb0"
+  },
+  "nodeGroups": [],
+  "id": "l7Bf0iuveHNzrLRF",
+  "tags": []
+}

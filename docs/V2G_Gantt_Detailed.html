@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>V2G Intelligence Platform — Detailed Gantt</title>
+  <style>
+    :root {
+      --bg: #f7f5f1;
+      --ink: #1a1f24;
+      --muted: #5c6570;
+      --line: #d9d3c8;
+      --kickoff: #1e4d6b;
+      --phase1: #2a6f6f;
+      --phase2: #b45309;
+      --eval: #6b3fa0;
+      --docs: #374151;
+      --stretch: #9ca3af;
+      --mile: #b91c1c;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+      background: linear-gradient(165deg, #efeae2 0%, #f7f5f1 40%, #e8eef2 100%);
+      color: var(--ink);
+      padding: 28px 20px 60px;
+    }
+    h1 { font-size: 1.45rem; margin: 0 0 4px; letter-spacing: -0.02em; }
+    .sub { color: var(--muted); font-size: 0.92rem; margin-bottom: 18px; }
+    .legend {
+      display: flex; flex-wrap: wrap; gap: 10px 16px;
+      margin-bottom: 16px; font-size: 0.82rem;
+    }
+    .legend span { display: inline-flex; align-items: center; gap: 6px; }
+    .swatch {
+      width: 14px; height: 14px; border-radius: 3px; display: inline-block;
+    }
+    .wrap {
+      overflow-x: auto;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      background: #fff;
+      box-shadow: 0 8px 28px rgba(26, 31, 36, 0.06);
+    }
+    table.gantt {
+      border-collapse: collapse;
+      min-width: 1200px;
+      width: 100%;
+      font-size: 0.78rem;
+    }
+    table.gantt th, table.gantt td {
+      border-bottom: 1px solid #eee;
+      padding: 0;
+      vertical-align: middle;
+    }
+    table.gantt thead th {
+      position: sticky; top: 0; z-index: 2;
+      background: #faf9f7;
+      font-weight: 600;
+      color: var(--muted);
+      padding: 8px 4px;
+      text-align: center;
+      border-bottom: 1px solid var(--line);
+    }
+    .label-col {
+      position: sticky; left: 0; z-index: 3;
+      background: #fff;
+      min-width: 280px; max-width: 320px;
+      padding: 6px 10px !important;
+      border-right: 1px solid var(--line);
+      text-align: left !important;
+    }
+    thead .label-col { z-index: 4; background: #faf9f7; }
+    .owner-col {
+      position: sticky; left: 280px; z-index: 3;
+      background: #fff;
+      min-width: 110px;
+      padding: 6px 8px !important;
+      border-right: 1px solid var(--line);
+      color: var(--muted);
+      text-align: left !important;
+    }
+    thead .owner-col { z-index: 4; background: #faf9f7; }
+    .group-row td {
+      background: #f0ebe3;
+      font-weight: 700;
+      font-size: 0.72rem;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: var(--muted);
+      padding: 8px 10px !important;
+    }
+    .day {
+      width: 14px;
+      min-width: 14px;
+      height: 28px;
+      position: relative;
+    }
+    .day.weekend { background: #faf7f2; }
+    .day.mile::after {
+      content: "";
+      position: absolute;
+      top: 0; bottom: 0; left: 50%;
+      width: 2px;
+      background: var(--mile);
+      opacity: 0.55;
+      transform: translateX(-50%);
+    }
+    .bar {
+      position: absolute;
+      top: 5px; bottom: 5px; left: 0; right: 0;
+      border-radius: 4px;
+      opacity: 0.92;
+    }
+    .bar.start { border-top-left-radius: 4px; border-bottom-left-radius: 4px; }
+    .bar.end { border-top-right-radius: 4px; border-bottom-right-radius: 4px; }
+    .kickoff .bar { background: var(--kickoff); }
+    .phase1 .bar { background: var(--phase1); }
+    .phase2 .bar { background: var(--phase2); }
+    .eval .bar { background: var(--eval); }
+    .docs .bar { background: var(--docs); }
+    .stretch .bar { background: var(--stretch); }
+    .milestones {
+      margin-top: 18px;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 8px;
+      font-size: 0.85rem;
+    }
+    .milestones div {
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 10px 12px;
+    }
+    .milestones strong { color: var(--mile); }
+    footer { margin-top: 20px; color: var(--muted); font-size: 0.8rem; }
+  </style>
+</head>
+<body>
+  <h1>V2G Intelligence Platform — Detailed Gantt</h1>
+  <p class="sub">Anahid · Sandeep · Frank · Isaac &nbsp;|&nbsp; Fuse Capstone &nbsp;|&nbsp; Sep 24 – Nov 18, 2026 &nbsp;|&nbsp; 40 subtasks</p>
+  <div class="legend">
+    <span><i class="swatch" style="background:var(--kickoff)"></i>0 Kickoff</span>
+    <span><i class="swatch" style="background:var(--phase1)"></i>Phase 1 Ingestion / DB / Classify</span>
+    <span><i class="swatch" style="background:var(--phase2)"></i>Phase 2 RAG / UI</span>
+    <span><i class="swatch" style="background:var(--eval)"></i>Evaluation</span>
+    <span><i class="swatch" style="background:var(--docs)"></i>Docs &amp; demo</span>
+    <span><i class="swatch" style="background:var(--stretch)"></i>Stretch</span>
+    <span><i class="swatch" style="background:var(--mile)"></i>Milestone (red line)</span>
+  </div>
+  <div class="wrap" id="chart"></div>
+  <div class="milestones" id="miles"></div>
+  <footer>Scroll horizontally for the full timeline. Sticky columns show task + owner. Regenerated with the project plan subtask breakdown.</footer>
+  <script>
+    const START = new Date(2026, 8, 22); // Sep 22
+    const END = new Date(2026, 10, 20);  // Nov 20
+    const MILESTONES = [
+      ["2026-09-26", "Schema / kickoff freeze"],
+      ["2026-10-01", "DB ready"],
+      ["2026-10-08", "Ingest MVP"],
+      ["2026-10-15", "Labels on store"],
+      ["2026-10-22", "Queryable RAG"],
+      ["2026-11-05", "UI + citations demo"],
+      ["2026-11-12", "Eval report (MVP)"],
+      ["2026-11-18", "Presentation"],
+    ];
+    const GROUPS = [
+      { name: "0 Kickoff", phase: "kickoff", tasks: [
+        ["0.1 Kickoff meeting — roles & norms", "All", "2026-09-24", "2026-09-24"],
+        ["0.2 Freeze document schema + label enums", "All", "2026-09-24", "2026-09-25"],
+        ["0.3 Choose tech stack & repo layout", "All", "2026-09-24", "2026-09-25"],
+        ["0.4 Draft sources.yaml v1 (5–8 sources)", "Anahid, Sandeep", "2026-09-24", "2026-09-26"],
+        ["0.5 Create 15–20 mock documents", "All", "2026-09-24", "2026-09-26"],
+        ["0.6 MVP definition-of-done one-pager", "All", "2026-09-25", "2026-09-26"],
+      ]},
+      { name: "1 Database", phase: "phase1", tasks: [
+        ["1.1 SQL/schema migrations (core tables)", "Frank, Isaac", "2026-09-27", "2026-09-29"],
+        ["1.2 Content hash + versioning API", "Frank, Isaac", "2026-09-28", "2026-09-30"],
+        ["1.3 upsert / list / get repository layer", "Frank", "2026-09-29", "2026-10-01"],
+        ["1.4 Seed DB with mocks + unit tests", "Isaac", "2026-09-30", "2026-10-01"],
+        ["1.5 JSONL export / snapshot for eval", "Frank", "2026-09-30", "2026-10-01"],
+      ]},
+      { name: "2 Ingestion", phase: "phase1", tasks: [
+        ["2.1 Source registry wired to collectors", "Anahid", "2026-09-27", "2026-09-30"],
+        ["2.2 ToS / robots access notes", "Anahid", "2026-09-27", "2026-10-01"],
+        ["2.3 HTML collector (first 2 sources)", "Sandeep", "2026-09-29", "2026-10-03"],
+        ["2.4 PDF + Excel extractors", "Sandeep", "2026-10-01", "2026-10-05"],
+        ["2.5 Persist via DB API + run logs", "Anahid, Sandeep", "2026-10-02", "2026-10-06"],
+        ["2.6 Expand to ≥5 sources; CLI ingest", "Anahid", "2026-10-04", "2026-10-08"],
+        ["2.7 Optional: schedule cron (if stable)", "Anahid", "2026-10-07", "2026-10-08"],
+      ]},
+      { name: "3 Classification", phase: "phase1", tasks: [
+        ["3.1 Classification prompt + schema map", "Isaac", "2026-10-08", "2026-10-10"],
+        ["3.2 Classify-on-change job (hash trigger)", "Isaac", "2026-10-09", "2026-10-12"],
+        ["3.3 Backfill labels on existing docs", "Isaac", "2026-10-11", "2026-10-14"],
+        ["3.4 Spot-check 10 docs; calibrate prompt", "Isaac", "2026-10-13", "2026-10-15"],
+      ]},
+      { name: "4 Time-aware RAG", phase: "phase2", tasks: [
+        ["4.1 Chunker + metadata on chunks", "Sandeep", "2026-10-01", "2026-10-06"],
+        ["4.2 Embeddings + vector store (mocks)", "Sandeep", "2026-10-04", "2026-10-10"],
+        ["4.3 Retrieve API + date/label filters", "Sandeep", "2026-10-08", "2026-10-15"],
+        ["4.4 Hash-aware re-index; skip unchanged", "Sandeep", "2026-10-13", "2026-10-18"],
+        ["4.5 Smoke test 5 questions on real docs", "Sandeep", "2026-10-16", "2026-10-22"],
+      ]},
+      { name: "5 UI + Citations", phase: "phase2", tasks: [
+        ["5.1 Streamlit shell (Q box, filters)", "Frank", "2026-10-08", "2026-10-14"],
+        ["5.2 Grounded answer prompt + citations", "Frank", "2026-10-12", "2026-10-22"],
+        ["5.3 Wire retrieve API; corpus-as-of banner", "Frank", "2026-10-20", "2026-10-29"],
+        ["5.4 Q&A logging for evaluation", "Frank", "2026-10-27", "2026-11-02"],
+        ["5.5 UI polish + Fuse demo dry-run", "Frank", "2026-11-02", "2026-11-05"],
+      ]},
+      { name: "6 Evaluation", phase: "eval", tasks: [
+        ["6.1 Draft ~30 gold questions (buckets)", "Anahid", "2026-10-08", "2026-10-17"],
+        ["6.2 Expected cites / must-refuse notes", "Anahid", "2026-10-15", "2026-10-24"],
+        ["6.3 Eval runner (accuracy + citations)", "Anahid", "2026-10-27", "2026-11-05"],
+        ["6.4 Optional RAGAs scorecard pass", "Anahid", "2026-11-03", "2026-11-08"],
+        ["6.5 2-model comparison + eval report", "Anahid", "2026-11-06", "2026-11-12"],
+      ]},
+      { name: "7 Docs & Presentation", phase: "docs", tasks: [
+        ["7.1 README runbook (ingest, index, UI)", "All", "2026-11-12", "2026-11-15"],
+        ["7.2 Architecture diagram + limitations", "All", "2026-11-13", "2026-11-16"],
+        ["7.3 Deck, demo script, presentation", "All", "2026-11-14", "2026-11-18"],
+      ]},
+      { name: "S Stretch Digest", phase: "stretch", tasks: [
+        ["S.1 Diff query (new/changed last 7 days)", "TBD", "2026-11-12", "2026-11-15"],
+        ["S.2 Weekly digest generation + page", "TBD", "2026-11-14", "2026-11-18"],
+      ]},
+    ];
+
+    function parse(s) {
+      const [y, m, d] = s.split("-").map(Number);
+      return new Date(y, m - 1, d);
+    }
+    function fmt(d) {
+      return d.toLocaleDateString("en-US", { month: "short", day: "numeric" });
+    }
+    function daysBetween(a, b) {
+      return Math.round((b - a) / 86400000);
+    }
+
+    const days = [];
+    for (let t = START.getTime(); t <= END.getTime(); t += 86400000) {
+      days.push(new Date(t));
+    }
+    const mileSet = new Set(MILESTONES.map(m => m[0]));
+
+    const table = document.createElement("table");
+    table.className = "gantt";
+    const thead = document.createElement("thead");
+    const hr = document.createElement("tr");
+    hr.innerHTML = `<th class="label-col">Subtask</th><th class="owner-col">Owner</th>`;
+    days.forEach(d => {
+      const th = document.createElement("th");
+      th.className = "day" + (d.getDay() % 6 === 0 ? " weekend" : "") + (mileSet.has(d.toISOString().slice(0,10)) ? " mile" : "");
+      if (d.getDay() === 1 || d.getDate() === 1) th.textContent = fmt(d);
+      hr.appendChild(th);
+    });
+    thead.appendChild(hr);
+    table.appendChild(thead);
+
+    const tbody = document.createElement("tbody");
+    GROUPS.forEach(g => {
+      const gr = document.createElement("tr");
+      gr.className = "group-row";
+      gr.innerHTML = `<td class="label-col" colspan="2">${g.name}</td><td colspan="${days.length}"></td>`;
+      // fix sticky: use two cells
+      gr.innerHTML = "";
+      const td1 = document.createElement("td");
+      td1.className = "label-col";
+      td1.textContent = g.name;
+      td1.colSpan = 2;
+      gr.appendChild(td1);
+      // Actually colspan on sticky is messy — use label spanning visually
+      gr.removeChild(td1);
+      const a = document.createElement("td");
+      a.className = "label-col";
+      a.textContent = g.name;
+      a.style.fontWeight = "700";
+      const b = document.createElement("td");
+      b.className = "owner-col";
+      b.textContent = "";
+      gr.appendChild(a);
+      gr.appendChild(b);
+      days.forEach(d => {
+        const td = document.createElement("td");
+        td.className = "day" + (d.getDay() % 6 === 0 ? " weekend" : "") + (mileSet.has(d.toISOString().slice(0,10)) ? " mile" : "");
+        gr.appendChild(td);
+      });
+      gr.style.background = "#f0ebe3";
+      tbody.appendChild(gr);
+
+      g.tasks.forEach(([label, owner, s, e]) => {
+        const start = parse(s), end = parse(e);
+        const tr = document.createElement("tr");
+        tr.className = g.phase;
+        const l = document.createElement("td");
+        l.className = "label-col";
+        l.textContent = label;
+        const o = document.createElement("td");
+        o.className = "owner-col";
+        o.textContent = owner;
+        tr.appendChild(l);
+        tr.appendChild(o);
+        days.forEach(d => {
+          const td = document.createElement("td");
+          td.className = "day" + (d.getDay() % 6 === 0 ? " weekend" : "") + (mileSet.has(d.toISOString().slice(0,10)) ? " mile" : "");
+          if (d >= start && d <= end) {
+            const bar = document.createElement("div");
+            bar.className = "bar";
+            if (+d === +start) bar.classList.add("start");
+            if (+d === +end) bar.classList.add("end");
+            td.appendChild(bar);
+            td.title = `${label}\n${owner}\n${s} → ${e}`;
+          }
+          tr.appendChild(td);
+        });
+        tbody.appendChild(tr);
+      });
+    });
+    table.appendChild(tbody);
+    document.getElementById("chart").appendChild(table);
+
+    const miles = document.getElementById("miles");
+    MILESTONES.forEach(([d, name]) => {
+      const el = document.createElement("div");
+      el.innerHTML = `<strong>${d.slice(5)}</strong> — ${name}`;
+      miles.appendChild(el);
+    });
+  </script>
+</body>
+</html>
