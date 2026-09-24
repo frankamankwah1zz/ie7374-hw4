@@ -386,7 +386,9 @@ These unblock Tasks 4–5 before real collectors finish.
 
 ---
 
-## 6. Timeline (Gantt-style)
+## 6. Timeline (Gantt)
+
+**Detailed charts (40 subtasks):** see [`V2G_Gantt_Detailed.md`](V2G_Gantt_Detailed.md), open [`V2G_Gantt_Detailed.html`](V2G_Gantt_Detailed.html) in a browser, or view [`V2G_Gantt_Detailed.png`](V2G_Gantt_Detailed.png). Regenerate with `python docs/generate_gantt.py`.
 
 ```
          Sep24  Oct1   Oct8   Oct15  Oct22  Nov5   Nov12  Nov18
